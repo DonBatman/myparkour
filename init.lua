@@ -30,7 +30,7 @@ local nbox2 = {
 	}
 
 --Red Parkour Block
-minetest.register_node("myparkour:pk_red", {
+core.register_node("myparkour:pk_red", {
 	description = "Red Parkour Block",
 	tiles = {
 		"pk_top_red.png",
@@ -50,7 +50,7 @@ minetest.register_node("myparkour:pk_red", {
 })
 
 --Green Parkour Block
-minetest.register_node("myparkour:pk_green", {
+core.register_node("myparkour:pk_green", {
 	description = "Green Parkour Block",
 	tiles = {
 		"pk_top_green.png",
@@ -70,7 +70,7 @@ minetest.register_node("myparkour:pk_green", {
 })
 
 --Yellow Parkour Block
-minetest.register_node("myparkour:pk_yellow", {
+core.register_node("myparkour:pk_yellow", {
 	description = "Yellow Parkour Block",
 	tiles = {
 		"pk_top_yellow.png",
@@ -90,7 +90,7 @@ minetest.register_node("myparkour:pk_yellow", {
 })
 
 --Red Drop Parkour Block
-minetest.register_node("myparkour:pk_red_drop", {
+core.register_node("myparkour:pk_red_drop", {
 	tiles = {
 		"pk_top_red_drop.png",
 		"pk_top_red_drop.png",
@@ -110,7 +110,7 @@ minetest.register_node("myparkour:pk_red_drop", {
 })
 
 --Green Drop Parkour Block
-minetest.register_node("myparkour:pk_green_drop", {
+core.register_node("myparkour:pk_green_drop", {
 	description = "Green Drop Parkour Block",
 	tiles = {
 		"pk_top_green_drop.png",
@@ -130,22 +130,22 @@ minetest.register_node("myparkour:pk_green_drop", {
 })
 
 
-minetest.register_abm({
+core.register_abm({
 	nodenames = {"myparkour:pk_green_drop","myparkour:pk_red_drop"},
 	interval = 3,
 	chance = 2,
 	action = function(pos, node)
 
 		if node.name == "myparkour:pk_green_drop" then
-			minetest.set_node(pos, {name="myparkour:pk_red_drop"})
+			core.set_node(pos, {name="myparkour:pk_red_drop"})
 		elseif node.name == "myparkour:pk_red_drop" then
-			minetest.set_node(pos, {name="myparkour:pk_green_drop"})
+			core.set_node(pos, {name="myparkour:pk_green_drop"})
 		end
 	end,
 })
 
 --Green Block
-minetest.register_node("myparkour:pk_green_block", {
+core.register_node("myparkour:pk_green_block", {
 	description = "Green Block",
 	tiles = {"pk_green_block.png"},
 	groups = {cracky=2},
@@ -154,7 +154,7 @@ minetest.register_node("myparkour:pk_green_block", {
 })
 
 --Red Block
-minetest.register_node("myparkour:pk_red_block", {
+core.register_node("myparkour:pk_red_block", {
 	description = "Red Block",
 	tiles = {"pk_red_block.png"},
 	groups = {cracky=2},
@@ -167,7 +167,7 @@ minetest.register_node("myparkour:pk_red_block", {
 
 --Green Block
 
-minetest.register_craft({
+core.register_craft({
 	output = "myparkour:pk_green 3",
 	recipe = {
 		{'', 'wool:black', ''},
@@ -178,7 +178,7 @@ minetest.register_craft({
 
 --Red Block
 
-minetest.register_craft({
+core.register_craft({
 	output = "myparkour:pk_red 3",
 	recipe = {
 		{'', 'wool:black', ''},
@@ -189,7 +189,7 @@ minetest.register_craft({
 
 --Yellow Block
 
-minetest.register_craft({
+core.register_craft({
 	output = "myparkour:pk_yellow 3",
 	recipe = {
 		{'', 'wool:black', ''},
@@ -200,7 +200,7 @@ minetest.register_craft({
 
 --Green Drop Block
 
-minetest.register_craft({
+core.register_craft({
 	output = "myparkour:pk_green_drop 5",
 	recipe = {
 		{'default:mese_crystal', 'wool:black', 'default:mese_crystal'},
@@ -208,7 +208,7 @@ minetest.register_craft({
 		{'default:mese_crystal', 'wool:black', 'default:mese_crystal'}
 	}
 })
-minetest.register_node("myparkour:parkour", {
+core.register_node("myparkour:parkour", {
 	description = "Parkour Block Green",
 	tiles = {
 		"myparkour_top.png",
@@ -223,7 +223,7 @@ minetest.register_node("myparkour:parkour", {
 	groups = {cracky = 2},
 	node_box = nbox2
 })
-minetest.register_node("myparkour:parkour2", {
+core.register_node("myparkour:parkour2", {
 	description = "Parkour Block Yellow",
 	tiles = {
 		"myparkour_top2.png",
@@ -238,7 +238,7 @@ minetest.register_node("myparkour:parkour2", {
 	groups = {cracky = 2},
 	node_box = nbox2
 })
-minetest.register_node("myparkour:parkour3", {
+core.register_node("myparkour:parkour3", {
 	description = "Parkour Block Red",
 	tiles = {
 		"myparkour_top3.png",
@@ -253,3 +253,17 @@ minetest.register_node("myparkour:parkour3", {
 	groups = {cracky = 2},
 	node_box = nbox2
 })
+if core.get_modpath("lucky_block") then
+	lucky_block:add_blocks({
+		{"dro", {"myparkour:pk_red"}, 10},
+		{"dro", {"myparkour:pk_green"}, 10},
+		{"dro", {"myparkour:pk_yellow"}, 10},
+		{"dro", {"myparkour:pk_red_drop"}, 10},
+		{"dro", {"myparkour:pk_green_drop"}, 10},
+		{"dro", {"myparkour:pk_green_block"}, 10},
+		{"dro", {"myparkour:pk_red_block"}, 10},
+		{"dro", {"myparkour:parkour"}, 10},
+		{"dro", {"myparkour:parkour2"}, 10},
+		{"dro", {"myparkour:parkour3"}, 10},
+	})
+end
